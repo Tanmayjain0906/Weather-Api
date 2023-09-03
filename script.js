@@ -12,8 +12,8 @@ fetchBtn.addEventListener("click", () => {
     function onSuccess(position)
     {
         let {latitude, longitude} = position.coords;
-        console.log(latitude);
-        console.log(longitude);
+        // console.log(latitude);
+        // console.log(longitude);
 
         modal.style.display = "none";
 
@@ -39,17 +39,17 @@ function addDataToUI(lat,long)
     mapContainer.innerHTML = `<iframe src="https://maps.google.com/maps?q=${lat}, ${long}&z=15&output=embed" width="360"
     height="270" frameborder="0" style="border:0"></iframe>`
 
-    fetchWeatherData(lat, long);
+    OpenWeatherMap(lat, long);
 }
 
-async function fetchWeatherData(lat, long)
+async function OpenWeatherMap(lat, long)
 {
    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${apiKey}`;
 
    let response = await fetch(url);
    let data = await response.json();
 
-   console.log(data);
+//    console.log(data);
    addDataToWeatherUI(data);
 }
 
