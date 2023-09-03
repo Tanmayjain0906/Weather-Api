@@ -63,13 +63,13 @@ function addDataToWeatherUI(data)
 
     <button class="btn">Humidity: ${data.main.humidity}</button>
 
-    <button class="btn">Time Zone: GMT +${new Date(data.timezone).toUTCString()}</button>
+    <button class="btn">Time Zone: ${new Date().toUTCString()}</button>
 
     <button class="btn">Pressure: ${mmHgToAtm(data.main.pressure)}atm</button>
 
     <button class="btn">Wind Direction: ${getDirection(data.wind.deg)}</button>
 
-    <button class="btn">UV Index: 423</button>
+    <button class="btn">UV Index: 423</button> 
 
     <button class="btn">Feels like: ${data.main.feels_like}°</button>`
 }
@@ -78,6 +78,10 @@ var directions = ["North", "North-East", "East", "South-East", "South", "South-W
 
 function getDirection(heading) {
    var index = Math.round((heading/8)/5,625)
+   if(directions[index] == undefined)
+   {
+    return directions[directions.length-1];
+   }
    return directions[index]
 }
 
@@ -86,3 +90,5 @@ function mmHgToAtm(mmHg) {
     let atm = mmHg / 760;
     return atm.toFixed(2);
   }
+
+// Note: UV index is now a part of one call api which we need to buy subscription.
