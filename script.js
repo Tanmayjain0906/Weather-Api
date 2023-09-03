@@ -69,7 +69,7 @@ function addDataToWeatherUI(data)
 
     <button class="btn">Wind Direction: ${getDirection(data.wind.deg)}</button>
 
-    <button class="btn">UV Index: 500</button>
+    <button class="btn">UV Index: 423</button>
 
     <button class="btn">Feels like: ${data.main.feels_like}°</button>`
 }

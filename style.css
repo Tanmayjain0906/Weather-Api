@@ -108,6 +108,7 @@ iframe {
     color: white;
     font-weight: 600;
     font-size: 20px;
+    border-radius: 6px;
 }
 
 @media (max-width: 850px) {
@@ -129,5 +130,12 @@ iframe {
     .modal-container h1
     {
         font-size: 55px;
+    }
+
+    .data-btn
+    {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 12px;
     }
 }
