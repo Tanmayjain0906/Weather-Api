@@ -90,7 +90,7 @@ function addDataToUI(lat,long)
 
 async function fetchWeatherData(lat, long)
 {
-   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}`;
+   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${apiKey}`;
 
    let response = await fetch(url);
    let data = await response.json();
@@ -109,13 +109,26 @@ function addDataToWeatherUI(data)
 
     <button class="btn">Humidity: ${data.main.humidity}</button>
 
-    <button class="btn">Time Zone: GMT +${data.timezone}</button>
+    <button class="btn">Time Zone: GMT +${new Date(data.timezone).toUTCString()}</button>
 
-    <button class="btn">Pressure: ${data.main.pressure}atm</button>
+    <button class="btn">Pressure: ${mmHgToAtm(data.main.pressure)}atm</button>
 
-    <button class="btn">Wind Direction: North West</button>
+    <button class="btn">Wind Direction: ${getDirection(data.wind.deg)}</button>
 
     <button class="btn">UV Index: 500</button>
 
     <button class="btn">Feels like: ${data.main.feels_like}°</button>`
 }
+
+var directions = ["North", "North-East", "East", "South-East", "South", "South-West", "West", "North-West"]
+
+function getDirection(heading) {
+   var index = Math.round((heading/8)/5,625)
+   return directions[index]
+}
+
+
+function mmHgToAtm(mmHg) {
+    let atm = mmHg / 760;
+    return atm.toFixed(2);
+  }
